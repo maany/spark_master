@@ -1,0 +1,2 @@
+spark-master-expected-from-site-level-config:
+  spark_master_default_var_enable_init_daemon: false
