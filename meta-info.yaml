@@ -1,0 +1,21 @@
+#General Component Desciption
+component : "spark-master"
+type: spark_master
+version : 2.5.13
+docker_hub_tag : ""
+site_level_config_version: 1.0
+default_var_prefix: master_default_var
+runtime_vars:
+  - master_runtime_var_host
+
+docker_run_parameters:
+  privileged: true
+  detached: true
+  tty: true
+  environment: "ENABLE_INIT_DAEMON=false"
+  networks: spark-net
+  ports:
+      - "8080:8080"
+      - "7077:7077"
+  image: bde2020/spark-master:2.4.0-hadoop2.7
+  command: /bin/bash
