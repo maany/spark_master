@@ -2,7 +2,6 @@ import argparse
 import yaml
 import yaql
 
-
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--site_config', help="Compiled Site Level Configuration YAML file")
@@ -15,6 +14,7 @@ def parse_args():
         'output_dir': args.output_dir
     }
 
+
 def get_current_lightweight_component(data, execution_id):
     current_lightweight_component = None
     for lightweight_component in data['lightweight_components']:
@@ -22,6 +22,7 @@ def get_current_lightweight_component(data, execution_id):
             current_lightweight_component = lightweight_component
             break
     return current_lightweight_component
+
 
 def get_spark_default_config_file_content(data, execution_id):
     current_lightweight_component = get_current_lightweight_component(data, execution_id)
