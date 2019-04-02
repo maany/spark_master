@@ -29,8 +29,8 @@ def get_spark_default_config_file_content(data, execution_id):
     config = []
     config_section = current_lightweight_component['config']
     spark_eventLog_enabled = config_section['spark_eventLog_enabled']
-    spark_ui_enabled = config_section['spark_ui_enabled']
     config.append("spark.eventLog.enabled {value}".format(value=str(spark_eventLog_enabled).lower()))
+    spark_ui_enabled = config_section['spark_ui_enabled']
     config.append("spark.ui.enabled {value}".format(value=str(spark_ui_enabled).lower()))
     # process supplemental config
     supplemental_config = current_lightweight_component['supplemental_config']
