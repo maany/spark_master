@@ -1,14 +1,13 @@
 #!/bin/bash
-echo "Hello World"
-export SPARK_MASTER_HOST=`hostname`
 
-. "/spark/sbin/spark-config.sh"
+. "/etc/simple_grid/config/spark-config.sh"
+. "/etc/simple_grid/config/spark_env.sh"
 
-. "/spark/bin/load-spark-env.sh"
 
+cat /etc/simple_grid/config/spark_env.sh >> ~/.bashrc
+
+source ~/.bashrc
 mkdir -p $SPARK_MASTER_LOG
-
-export SPARK_HOME=/spark
 
 ln -sf /dev/stdout $SPARK_MASTER_LOG/spark-master.out
 
