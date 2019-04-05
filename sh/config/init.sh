@@ -16,7 +16,8 @@ mkdir -p $SPARK_MASTER_LOG
 #chmod 755 /etc/init.d/spark-master
 
 echo "Starting Spark Master"
-nohup /spark/bin/spark-class org.apache.spark.deploy.master.Master \
+trap '' HUP
+/spark/bin/spark-class org.apache.spark.deploy.master.Master \
             --ip $SPARK_MASTER_HOST --port $SPARK_MASTER_PORT --webui-port $SPARK_MASTER_WEBUI_PORT >> $SPARK_MASTER_LOG/spark-master.out 2>&1 </dev/null &
 
 #service spark-master start
