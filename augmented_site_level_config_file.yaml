@@ -1,4 +1,5 @@
 spark-master-expected-from-site-level-config:
+  spark_master_default_var_host: simple-lc01.cern.ch
   spark_master_default_var_enable_init_daemon: false
   spark_master_default_var_spark_event_log_enabled: false
 meta_info_spark-master:
@@ -234,6 +235,7 @@ lightweight_components:
     node: simple-lc01.cern.ch
     container_count: 1
   config:
+    host: simple-lc01.cern.ch
     spark_event_log_enabled: false
     enable_init_daemon: false
   repository_revision: master

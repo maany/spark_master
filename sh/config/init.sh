@@ -1,25 +1,21 @@
 #!/bin/bash
 
-. "/etc/simple_grid/config/spark-config.sh"
-. "/etc/simple_grid/config/spark_env.sh"
-
-
-cat /etc/simple_grid/config/spark_env.sh >> ~/.bashrc
+trap '' HUP
+cat /etc/simple_grid/config/spark_env.conf >> ~/.bashrc
+# Add the PySpark classes to the PYTHONPATH:
+if [ -z "${PYSPARK_PYTHONPATH_SET}" ]; then
+  export PYTHONPATH="${SPARK_HOME}/python:${PYTHONPATH}" >> ~/.bashrc
+  export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.7-src.zip:${PYTHONPATH}" >> ~/.bashrc
+  export PYSPARK_PYTHONPATH_SET=1 >> ~/.bashrc
+fi
 
 source ~/.bashrc
 mkdir -p $SPARK_MASTER_LOG
-
-#ln -sf /dev/stdout $SPARK_MASTER_LOG/spark-master.out
-
-#echo "Copying spark-master service to /etc/init.d"
-#cp /etc/simple_grid/config/spark-master /etc/init.d/
-#chmod 755 /etc/init.d/spark-master
-
+echo "Copying spark-defaults.conf to /spark/conf"
+cp /etc/simple_grid/conf/spark-defaults.conf /spark/conf/
 echo "Starting Spark Master"
 trap '' HUP
 /spark/bin/spark-class org.apache.spark.deploy.master.Master \
             --ip $SPARK_MASTER_HOST --port $SPARK_MASTER_PORT --webui-port $SPARK_MASTER_WEBUI_PORT >> $SPARK_MASTER_LOG/spark-master.out 2>&1 </dev/null &
-
-#service spark-master start
-#echo "Checking status of Spark Master"
-#service spark-master status
+echo "All Set!"
+exit 0
