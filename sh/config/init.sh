@@ -1,5 +1,5 @@
 #!/bin/bash
-
+"Initializing the Spark Master Container"
 trap '' HUP
 cat /etc/simple_grid/config/spark_env.conf >> ~/.bashrc
 # Add the PySpark classes to the PYTHONPATH:
