@@ -1,3 +1,4 @@
 expected-from-site-level-config:
     enable_init_daemon: { type: bool(), required: true, use_default: true}
+    host: { type: str(), required: true, use_default: true}
     spark_event_log_enabled: {type: bool(), required: true, use_default: true}
