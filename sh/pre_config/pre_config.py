@@ -28,7 +28,7 @@ def get_spark_env_file_content(data, execution_id):
     spark_env = []
     current_lightweight_component = get_current_lightweight_component(data, execution_id)
     master_url = current_lightweight_component['config']['host']
-    spark_env.append("export SPARK_MASTER_HOST={master}:7077".format(master=master_url))
+    spark_env.append("export SPARK_MASTER_HOST={master}".format(master=master_url))
     spark_env.append("export SPARK_HOME=/spark")
     spark_env.append("export SPARK_CONF_DIR=\"${SPARK_CONF_DIR:-\"${SPARK_HOME}\"/conf}\"")
     return "\n".join(spark_env)
