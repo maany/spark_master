@@ -1,5 +1,5 @@
 #!/bin/bash
-"Initializing the Spark Master Container"
+echo "Initializing the Spark Master Container"
 trap '' HUP
 cat /etc/simple_grid/config/spark_env.conf >> ~/.bashrc
 # Add the PySpark classes to the PYTHONPATH:
@@ -12,7 +12,7 @@ fi
 source ~/.bashrc
 mkdir -p $SPARK_MASTER_LOG
 echo "Copying spark-defaults.conf to /spark/conf"
-cp /etc/simple_grid/conf/spark-defaults.conf /spark/conf/
+cp /etc/simple_grid/config/spark-defaults.conf /spark/conf/
 echo "Starting Spark Master"
 trap '' HUP
 /spark/bin/spark-class org.apache.spark.deploy.master.Master \
